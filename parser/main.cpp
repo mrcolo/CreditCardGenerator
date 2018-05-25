@@ -25,7 +25,7 @@ void parseVISA(){
     ofstream out;
     out.open("../data/parsed/dbvisa.txt");
     vector<card> myData;
-    std::ifstream is ("../data/notparsed/visa.txt", std::ifstream::binary);
+    std::ifstream is ("../../data/notparsed/visa.txt", std::ifstream::binary);
     if (is) {
 
         // get length of file:
@@ -115,7 +115,7 @@ void parseMASTERCARD(){
     ofstream out;
     out.open("../data/parsed/dbmc.txt");
     vector<card> myData;
-    std::ifstream is ("../data/notparsed/mc.txt", std::ifstream::binary);
+    std::ifstream is ("../../data/notparsed/mc.txt", std::ifstream::binary);
 
     if (is) {
 
@@ -196,7 +196,7 @@ void parseAMERICANEXPRESS(){
     ofstream out;
     out.open("../data/parsed/dbamex.txt");
     vector<card> myData;
-    std::ifstream is ("../data/notparsed/amex.txt", std::ifstream::binary);
+    std::ifstream is ("../../data/notparsed/amex.txt", std::ifstream::binary);
 
     if (is) {
 
