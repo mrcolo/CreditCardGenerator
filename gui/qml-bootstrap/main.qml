@@ -25,44 +25,24 @@ ApplicationWindow {
                 Behavior on opacity { NumberAnimation{} }
                 onClicked: {
                     stackView.pop()
-                    titleBar.title = "Qml Bootstrap Demo"
+                    titleBar.title = "CS3A | Test 2"
                 }
             }
         }
 
         class_name: "header"
-        title: "Qml Bootstrap Demo"
+        title: "CS3A 🔥 Test 2"
     }
 
     ListModel {
         id: pageModel
         ListElement {
-            text: "Buttons Demo"
+            text: "Verify a Credit Card"
             page: "src/examples/ButtonPage.qml"
         }
         ListElement {
-            text: "ListView Demo"
+            text: "Create Credit Card"
             page: "src/examples/DefaultListPage.qml"
-        }
-        ListElement {
-            text: "ListView with icon Demo"
-            page: "src/examples/IconListPage.qml"
-        }
-        ListElement {
-            text: "Avatar ListView Demo"
-            page: "src/examples/AvatarListPage.qml"
-        }
-        ListElement {
-            text: "Thumnail ListView Demo"
-            page: "src/examples/ThumbnailListPage.qml"
-        }
-        ListElement {
-            text: "Button bar Demo"
-            page: "src/examples/ButtonBarPage.qml"
-        }
-        ListElement {
-            text: "Card"
-            page: "src/examples/CardPage.qml"
         }
     }
 
@@ -91,6 +71,6 @@ ApplicationWindow {
 
     statusBar: Bar{
         class_name: "footer calm"
-        title: "Powered by Brexis and Kamhix"
+        title: "Made with ❤️ by Arman and Francesco"
     }
 }

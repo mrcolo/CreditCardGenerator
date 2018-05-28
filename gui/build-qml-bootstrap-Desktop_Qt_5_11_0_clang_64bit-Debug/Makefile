@@ -50,9 +50,13 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../qml-bootstrap/main.cpp qrc_qml.cpp
+SOURCES       = ../qml-bootstrap/main.cpp \
+		../../parser/card.cpp qrc_qml.cpp \
+		moc_backend.cpp
 OBJECTS       = main.o \
-		qrc_qml.o
+		card.o \
+		qrc_qml.o \
+		moc_backend.o
 DIST          = ../../../../Qt/5.11.0/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/qdevice.pri \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/device_config.prf \
@@ -190,6 +194,7 @@ DIST          = ../../../../Qt/5.11.0/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/spec_post.prf \
+		../qml-bootstrap/.qmake.stash \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/toolchain.prf \
@@ -218,7 +223,10 @@ DIST          = ../../../../Qt/5.11.0/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/exceptions.prf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/yacc.prf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/lex.prf \
-		../qml-bootstrap/qml-bootstrap.pro  ../qml-bootstrap/main.cpp
+		../qml-bootstrap/qml-bootstrap.pro ../qml-bootstrap/backend.h \
+		../../parser/parse.h \
+		../../parser/card.h ../qml-bootstrap/main.cpp \
+		../../parser/card.cpp
 QMAKE_TARGET  = qml-bootstrap
 DESTDIR       = 
 TARGET        = qml-bootstrap.app/Contents/MacOS/qml-bootstrap
@@ -373,6 +381,7 @@ Makefile: ../qml-bootstrap/qml-bootstrap.pro ../../../../Qt/5.11.0/clang_64/mksp
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/toolchain.prf \
@@ -547,6 +556,7 @@ Makefile: ../qml-bootstrap/qml-bootstrap.pro ../../../../Qt/5.11.0/clang_64/mksp
 ../../../../Qt/5.11.0/clang_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../../../Qt/5.11.0/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/5.11.0/clang_64/mkspecs/features/mac/sdk.prf:
 ../../../../Qt/5.11.0/clang_64/mkspecs/features/toolchain.prf:
@@ -614,7 +624,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../qml-bootstrap/qml.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/5.11.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../qml-bootstrap/main.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../qml-bootstrap/backend.h ../../parser/parse.h ../../parser/card.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../qml-bootstrap/main.cpp ../../parser/card.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -624,6 +635,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r qml-bootstrap.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -671,7 +683,6 @@ qrc_qml.cpp: ../qml-bootstrap/qml.qrc \
 		../qml-bootstrap/src/examples/ButtonPage.qml \
 		../qml-bootstrap/src/examples/ThumbnailListPage.qml \
 		../qml-bootstrap/src/examples/ButtonBarPage.qml \
-		../qml-bootstrap/src/examples/IconListPage.qml \
 		../qml-bootstrap/src/examples/images/winston.jpg \
 		../qml-bootstrap/src/examples/images/spengler.jpg \
 		../qml-bootstrap/src/examples/images/venkman.jpg \
@@ -698,8 +709,22 @@ compiler_moc_predefs_clean:
 moc_predefs.h: ../../../../Qt/5.11.0/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -mmacosx-version-min=10.11 -Wall -W -dM -E -o moc_predefs.h ../../../../Qt/5.11.0/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all:
+compiler_moc_header_make_all: moc_backend.cpp
 compiler_moc_header_clean:
+	-$(DEL_FILE) moc_backend.cpp
+moc_backend.cpp: ../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../parser/parse.h \
+		../../parser/card.h \
+		../qml-bootstrap/backend.h \
+		moc_predefs.h \
+		../../../../Qt/5.11.0/clang_64/bin/moc
+	/Users/francescocolonnese/Qt/5.11.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/francescocolonnese/Qt/5.11.0/clang_64/mkspecs/macx-clang -I'/Users/francescocolonnese/Desktop/WIlkinson TEST2/gui/qml-bootstrap' -I/Users/francescocolonnese/Qt/5.11.0/clang_64/lib/QtQuick.framework/Headers -I/Users/francescocolonnese/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/francescocolonnese/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers -I/Users/francescocolonnese/Qt/5.11.0/clang_64/lib/QtQml.framework/Headers -I/Users/francescocolonnese/Qt/5.11.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/francescocolonnese/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.1.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -F/Users/francescocolonnese/Qt/5.11.0/clang_64/lib ../qml-bootstrap/backend.h -o moc_backend.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
@@ -714,18 +739,33 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean 
 
 ####### Compile
 
 main.o: ../qml-bootstrap/main.cpp ../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
 		../../../../Qt/5.11.0/clang_64/lib/QtQml.framework/Headers/QQmlApplicationEngine \
-		../../../../Qt/5.11.0/clang_64/lib/QtQml.framework/Headers/qqmlapplicationengine.h
+		../../../../Qt/5.11.0/clang_64/lib/QtQml.framework/Headers/qqmlapplicationengine.h \
+		../../parser/parse.h \
+		../../parser/card.h \
+		../qml-bootstrap/backend.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../qml-bootstrap/main.cpp
+
+card.o: ../../parser/card.cpp ../../parser/card.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o card.o ../../parser/card.cpp
 
 qrc_qml.o: qrc_qml.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_qml.o qrc_qml.cpp
+
+moc_backend.o: moc_backend.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_backend.o moc_backend.cpp
 
 ####### Install
 

@@ -1,13 +1,14 @@
+TARGET = qml-bootstrap
 TEMPLATE = app
 
 QT += qml quick widgets
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+           ../../parser/card.cpp
 
 RESOURCES += qml.qrc
 OTHER_FILES += \
 		main.qml \
-		README.md \
 		src/variables/base.js \
 		src/variables/buttons.js \
 		src/variables/colors.js \
@@ -25,7 +26,6 @@ OTHER_FILES += \
 		src/styles/IconListViewStyle.qml \
 		src/examples/ButtonPage.qml \
 		src/examples/DefaultListPage.qml \
-		src/examples/IconListPage.qml \
     src/lists/AvatarListView.qml \
     src/styles/AvatarListViewStyle.qml \
     src/examples/AvatarListPage.qml \
@@ -49,3 +49,8 @@ QML_IMPORT_PATH =
 QMAKE_MAC_SDK = macosx10.9
 # Default rules for deployment.
 include(deployment.pri)
+
+HEADERS += \
+    backend.h \
+    ../../parser/parse.h \
+    ../../parser/card.h
