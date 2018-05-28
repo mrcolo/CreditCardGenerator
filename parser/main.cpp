@@ -18,6 +18,13 @@ int main() {
     parseMASTERCARD();
     parseAMERICANEXPRESS();
     cout<<"PARSING DONE. FILES CREATED."<<endl;
+
+    card myCard("4815820100304482");
+    if(myCard.isValid())
+        cout<<"Valid Card!"<<endl;
+    else
+        cout<<"Invalid Card!"<<endl;
+
     return 0;
 }
 void parseVISA(){
