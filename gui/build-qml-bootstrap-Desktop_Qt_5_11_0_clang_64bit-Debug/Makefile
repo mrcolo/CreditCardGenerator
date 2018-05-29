@@ -51,7 +51,7 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../qml-bootstrap/main.cpp \
-		../../parser/card.cpp qrc_qml.cpp \
+		../../src/card.cpp qrc_qml.cpp \
 		moc_backend.cpp
 OBJECTS       = main.o \
 		card.o \
@@ -224,9 +224,9 @@ DIST          = ../../../../Qt/5.11.0/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/yacc.prf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/lex.prf \
 		../qml-bootstrap/qml-bootstrap.pro ../qml-bootstrap/backend.h \
-		../../parser/parse.h \
-		../../parser/card.h ../qml-bootstrap/main.cpp \
-		../../parser/card.cpp
+		../../src/parse.h \
+		../../src/card.h ../qml-bootstrap/main.cpp \
+		../../src/card.cpp
 QMAKE_TARGET  = qml-bootstrap
 DESTDIR       = 
 TARGET        = qml-bootstrap.app/Contents/MacOS/qml-bootstrap
@@ -624,8 +624,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../qml-bootstrap/qml.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/5.11.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../qml-bootstrap/backend.h ../../parser/parse.h ../../parser/card.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../qml-bootstrap/main.cpp ../../parser/card.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../qml-bootstrap/backend.h ../../src/parse.h ../../src/card.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../qml-bootstrap/main.cpp ../../src/card.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -718,8 +718,6 @@ moc_backend.cpp: ../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QOb
 		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
 		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
-		../../parser/parse.h \
-		../../parser/card.h \
 		../qml-bootstrap/backend.h \
 		moc_predefs.h \
 		../../../../Qt/5.11.0/clang_64/bin/moc
@@ -747,8 +745,6 @@ main.o: ../qml-bootstrap/main.cpp ../../../../Qt/5.11.0/clang_64/lib/QtWidgets.f
 		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
 		../../../../Qt/5.11.0/clang_64/lib/QtQml.framework/Headers/QQmlApplicationEngine \
 		../../../../Qt/5.11.0/clang_64/lib/QtQml.framework/Headers/qqmlapplicationengine.h \
-		../../parser/parse.h \
-		../../parser/card.h \
 		../qml-bootstrap/backend.h \
 		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QObject \
 		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
@@ -758,8 +754,8 @@ main.o: ../qml-bootstrap/main.cpp ../../../../Qt/5.11.0/clang_64/lib/QtWidgets.f
 		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../qml-bootstrap/main.cpp
 
-card.o: ../../parser/card.cpp ../../parser/card.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o card.o ../../parser/card.cpp
+card.o: ../../src/card.cpp ../../src/card.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o card.o ../../src/card.cpp
 
 qrc_qml.o: qrc_qml.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_qml.o qrc_qml.cpp

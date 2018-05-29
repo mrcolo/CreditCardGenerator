@@ -3,9 +3,13 @@
 //
 
 #include "card.h"
+#include <iostream>
 #include <string>
 #include <sstream>
+#include <random>
+
 using namespace std;
+
 card::card(string bin, string company, string debitcredit, string cardtype, string country, string phone){
     stringstream ss;
 
@@ -18,6 +22,11 @@ card::card(string bin, string company, string debitcredit, string cardtype, stri
     COUNTRY = country;
     PHONE = phone;
 }
+
+card::card(const string &card_number){
+    CARDNUMBER = card_number;
+}
+
 card::~card(){
 
 }
@@ -44,6 +53,28 @@ card& card::operator=(const card& other){
 
 void card::generateNumber(){
     //TODO use Luhn to generate number based on BIN.
+}
+
+bool card::isValid(){
+    if(CARDNUMBER.length() != 16){
+        return false;
+    }else{
+        int sum = 0, temp = 0;
+        string luhn_numbers(CARDNUMBER.substr(0,string::npos));
+
+        for(size_t i = 0; i < luhn_numbers.length(); i++){
+            if(i%2 == 0 && i != luhn_numbers.length()-1){
+                temp = (luhn_numbers[i] - '0') * 2;
+                if(temp > 9)
+                    temp -= 9;
+                sum += temp;
+            }else{
+                temp = (luhn_numbers[i] - '0');
+                sum += temp;
+            }
+        }
+        return (sum % 10 == 0);
+    }
 }
 
 int card::getBin(){

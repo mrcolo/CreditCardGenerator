@@ -4,7 +4,7 @@ TEMPLATE = app
 QT += qml quick widgets
 
 SOURCES += main.cpp \
-           ../../parser/card.cpp
+           ../../src/card.cpp
 
 RESOURCES += qml.qrc
 OTHER_FILES += \
@@ -52,5 +52,5 @@ include(deployment.pri)
 
 HEADERS += \
     backend.h \
-    ../../parser/parse.h \
-    ../../parser/card.h
+    ../../src/parse.h \
+    ../../src/card.h

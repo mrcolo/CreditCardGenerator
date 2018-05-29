@@ -28,9 +28,9 @@ public:
     void parseVISA(vector<card>& myData){
 
         ofstream out;
-        out.open("../data/parsed/dbvisa.txt");
+        out.open("/Users/francescocolonnese/Desktop/WIlkinson\ TEST2/data/parsed/dbvisa.txt");
 
-        std::ifstream is ("../data/notparsed/visa.txt", std::ifstream::binary);
+        std::ifstream is ("/Users/francescocolonnese/Desktop/WIlkinson\ TEST2/data/notparsed/visa.txt", std::ifstream::binary);
         if (is) {
 
             // get length of file:
@@ -118,9 +118,9 @@ public:
     void parseMASTERCARD(vector<card>& myData){
 
         ofstream out;
-        out.open("../data/parsed/dbmc.txt");
+        out.open("/Users/francescocolonnese/Desktop/WIlkinson\ TEST2/data/parsed/dbmc.txt");
 
-        std::ifstream is ("../data/notparsed/mc.txt", std::ifstream::binary);
+        std::ifstream is ("/Users/francescocolonnese/Desktop/WIlkinson\ TEST2/data/notparsed/mc.txt", std::ifstream::binary);
 
         if (is) {
 
@@ -199,8 +199,8 @@ public:
     void parseAMERICANEXPRESS(vector<card>& myData){
 
         ofstream out;
-        out.open("../../data/parsed/dbamex.txt");
-        std::ifstream is ("../../data/notparsed/amex.txt", std::ifstream::binary);
+        out.open("/Users/francescocolonnese/Desktop/WIlkinson\ TEST2/data/parsed/dbamex.txt");
+        std::ifstream is ("/Users/francescocolonnese/Desktop/WIlkinson\ TEST2/data/notparsed/amex.txt", std::ifstream::binary);
 
         if (is) {
 
