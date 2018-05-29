@@ -51,7 +51,7 @@ card& card::operator=(const card& other){
     return *this;
 }
 
-void card::generateNumber(){
+string card::generateNumber(){
     srand(time(nullptr));
     string cardNum(to_string(BIN));
     int sum = 0, temp = 0;
@@ -75,7 +75,7 @@ void card::generateNumber(){
     int iCheck = (sum*9)%10;
     char cCheck = static_cast<char>('0' + iCheck);
     cardNum.push_back(cCheck);
-    CARDNUMBER = cardNum;
+    return cardNum;
 }
 
 bool card::isValid(){

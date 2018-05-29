@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import "../variables/fontawesome.js" as FontAwesome
 import "../bars"
-
+import "../buttons"
 Item {
     width: parent.width
     height: parent.height
@@ -165,24 +165,9 @@ Item {
                    console.log('Index ' + checkedIndex);
                }
             }
-            ButtonBar{
-               class_name: "dark"
-               checkable: true
-               model: [
-                   {
-                       text: 'First'
-                   },
-                   {
-                       text: 'Second'
-                   },
-                   {
-                       text: 'Third'
-                   }
-               ]
-
-               onCheckedIndexChanged: {
-                   console.log('Index ' + checkedIndex);
-               }
+            ButtonDefault {
+                                class_name: "large"
+                                text: "Button Large"
             }
         }
 

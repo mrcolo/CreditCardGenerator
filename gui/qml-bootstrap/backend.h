@@ -36,16 +36,21 @@ public:
 
         if(cardToString.length() == 16 && temp.isValid()){
             if(cardToString[0] == '4'){
+                cout<<stoi(cardToString.substr(0,6))<<endl;
+                cout<<myParser.myVISA[0].getBin()<<endl;
                 for(int i = 0; i < myParser.myVISA.size();i++)
-                    if(stoi(cardToString.substr(0,6)) == myParser.myVISA[i].getBin())
+                    if(stoi(cardToString.substr(0,6)) == myParser.myVISA[i].getBin()){
+                        cout<<"HAHA"<<endl;
                         result = (string("Type: Visa\n") +string("Company:")+ myParser.myVISA[i].getCompany() +
                                  "\nCard: "+ myParser.myVISA[i].getCardType() +
                                  "\nType: "+ myParser.myVISA[i].getDebitCredit() +
                                  "\nCountry: "+ myParser.myVISA[i].getCountry() +
                                  "\nPhone: "+ myParser.myVISA[i].getPhone());
-                    else{
-                        result = string("Type: Visa\n");
                     }
+
+
+
+
             }
 
             if(cardToString[0] == '3'){
@@ -56,9 +61,7 @@ public:
                                  "\nType: "+ myParser.myAMEX[i].getDebitCredit() +
                                  "\nCountry: "+ myParser.myAMEX[i].getCountry() +
                                  "\nPhone: "+ myParser.myAMEX[i].getPhone());
-                    else{
-                        result = string("Type: American Express\n");
-                    }
+
             }
             if(cardToString[0] == '5')
                 for(int i = 0; i < myParser.myMS.size();i++)
@@ -68,9 +71,7 @@ public:
                                  "\n"+"Type: " + myParser.myMS[i].getDebitCredit() +
                                  "\n"+"Country: " + myParser.myMS[i].getCountry() +
                                  "\n"+"Phone: "+ myParser.myMS[i].getPhone();
-                    else{
-                        result = string("Type: MasterCard\n");
-                    }
+
 
             QString qstr = QString::fromStdString(result);
             msgBox.setText(qstr);

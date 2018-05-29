@@ -25,11 +25,10 @@ ApplicationWindow {
                 Behavior on opacity { NumberAnimation{} }
                 onClicked: {
                     stackView.pop()
-                    titleBar.title = "CS3A | Test 2"
+                    titleBar.title = "CS3A 🔥 Test 2"
                 }
             }
         }
-
         class_name: "header"
         title: "CS3A 🔥 Test 2"
     }
@@ -41,31 +40,18 @@ ApplicationWindow {
             page: "src/examples/ButtonPage.qml"
         }
         ListElement {
-            text: "Create Credit Card"
-            page: "src/examples/DefaultListPage.qml"
+            text: "Create Credit Card - Visa"
+            page: "src/examples/Visa.qml"
+        }
+        ListElement {
+            text: "Create Credit Card - MasterCard"
+            page: "src/examples/MasterCard.qml"
+        }
+        ListElement {
+            text: "Create Credit Card - American Express"
+            page: "src/examples/AmericanExpress.qml"
         }
     }
-
-    Item {
-        width: parent.width
-        height: parent.height
-        DefaultListView{
-            id: listView
-            hasDivider: true
-            anchors.fill: parent
-            onItemClicked: {
-                listView.model.get(index).text = "Item clicked";
-            }
-
-            model: myModel
-            delegate: Rectangle {
-                    height: 25
-                    width: 100
-                    Text { text: "modelData" }
-                }
-    }
-    }
-
     StackView {
         id: stackView
         anchors.fill: parent

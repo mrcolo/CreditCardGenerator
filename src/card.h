@@ -15,7 +15,7 @@ public:
     card(const card& other);
     card& operator=(const card& other);
 
-    void generateNumber();
+    string generateNumber();
     int getBin();
     string getCompany();
     string getDebitCredit();

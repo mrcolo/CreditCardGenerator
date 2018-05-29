@@ -25,7 +25,7 @@ Item {
                 Layout.alignment: Qt.AlignTop
                 TextField {
                         id:cardnumber
-                        width: 500; // root item so give a size
+                        width: 500;
                         height: 60;
                         placeholderText: qsTr("Credit Card Number")
                     }

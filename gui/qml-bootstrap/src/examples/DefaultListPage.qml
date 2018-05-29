@@ -1,22 +1,27 @@
 import QtQuick 2.0
+import QtQuick.Layouts 1.1
+import QtQuick.Controls 1.4
+import "../buttons"
 import "../lists"
+import "../bars"
+import io.qt.examples.createcards 1.0
 
-Item {
-    width: parent.width
-    height: parent.height
-    DefaultListView{
-        id: listView
-        hasDivider: true
-        anchors.fill: parent
-        onItemClicked: {
-            listView.model.get(index).text = "Item clicked";
-        }
+ListView {
+    width: 500; height: 500
+    CreateCards {
+            id: createcards
+    }
+    Component {
+           id: fruitDelegate
+           ButtonDefault {
+                 text: modelData
+                 height: 50
+           }
+       }
 
-        model: myModel
-        delegate: Rectangle {
-                height: 25
-                width: 100
-                Text { text: "modelData" }
-            }
-}
+       ListView {
+           anchors.fill: parent
+           model: createcards.display()
+           delegate: fruitDelegate
+       }
 }

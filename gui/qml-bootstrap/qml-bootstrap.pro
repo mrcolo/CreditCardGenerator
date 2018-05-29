@@ -1,7 +1,7 @@
 TARGET = qml-bootstrap
 TEMPLATE = app
 
-QT += qml quick widgets
+QT += qml quick widgets printsupport
 
 SOURCES += main.cpp \
            ../../src/card.cpp
@@ -28,7 +28,6 @@ OTHER_FILES += \
 		src/examples/DefaultListPage.qml \
     src/lists/AvatarListView.qml \
     src/styles/AvatarListViewStyle.qml \
-    src/examples/AvatarListPage.qml \
     src/content/TextContent.qml \
     src/styles/ThumbnailListViewStyle.qml \
     src/lists/ThumbnailListView.qml \
@@ -39,8 +38,7 @@ OTHER_FILES += \
     src/bars/ButtonBar.qml \
     src/examples/ButtonBarPage.qml \
     src/cards/Card.qml \
-    src/styles/CardStyle.qml \
-    src/examples/CardPage.qml
+    src/styles/CardStyle.qml
 
 
 
@@ -53,4 +51,10 @@ include(deployment.pri)
 HEADERS += \
     backend.h \
     ../../src/parse.h \
-    ../../src/card.h
+    ../../src/card.h \
+    createCards.h
+
+DISTFILES += \
+    src/examples/Visa.qml \
+    src/examples/AmericanExpress.qml \
+    src/examples/MasterCard.qml
