@@ -30,9 +30,6 @@ public:
 
     void parseVISA(vector<card>& myData){
 
-
-        
-        
         ofstream out;
         out.open("../../../../../data/parsed/dbvisa.txt");
 

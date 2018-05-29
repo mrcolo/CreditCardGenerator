@@ -7,7 +7,7 @@ import "src/variables/fontawesome.js" as FontAwesome
 
 ApplicationWindow {
     visible: true
-    width: 800
+    width: 850
     height: 1280
     FontLoader{ source: "qrc:/src/fonts/fontawesome-webfont.ttf"}
     Rectangle {
@@ -36,20 +36,24 @@ ApplicationWindow {
     ListModel {
         id: pageModel
         ListElement {
-            text: "Verify a Credit Card"
+            text: "Verify a Card 💳"
             page: "src/examples/ButtonPage.qml"
         }
         ListElement {
-            text: "Create Credit Card - Visa"
+            text: "Create Cards - Visa 🔵 "
             page: "src/examples/Visa.qml"
         }
         ListElement {
-            text: "Create Credit Card - MasterCard"
+            text: "Create Cards - MasterCard 🔴 "
             page: "src/examples/MasterCard.qml"
         }
         ListElement {
-            text: "Create Credit Card - American Express"
+            text: "Create Cards - American Express ⚫ "
             page: "src/examples/AmericanExpress.qml"
+        }
+        ListElement {
+            text: "About ❓ "
+            page: "src/examples/About.qml"
         }
     }
     StackView {

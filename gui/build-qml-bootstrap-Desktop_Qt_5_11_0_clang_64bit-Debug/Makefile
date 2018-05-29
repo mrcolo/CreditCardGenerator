@@ -62,6 +62,7 @@ OBJECTS       = main.o \
 DIST          = ../qml-bootstrap/src/examples/Visa.qml \
 		../qml-bootstrap/src/examples/AmericanExpress.qml \
 		../qml-bootstrap/src/examples/MasterCard.qml \
+		../qml-bootstrap/src/examples/About.qml \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.11.0/clang_64/mkspecs/qdevice.pri \
 		../../../../Qt/5.11.0/clang_64/mkspecs/features/device_config.prf \
@@ -685,12 +686,10 @@ qrc_qml.cpp: ../qml-bootstrap/qml.qrc \
 		../qml-bootstrap/src/content/TextContent.qml \
 		../qml-bootstrap/src/fonts/fontawesome-webfont.ttf \
 		../qml-bootstrap/src/cards/Card.qml \
-		../qml-bootstrap/src/examples/DefaultListPage.qml \
 		../qml-bootstrap/src/examples/MasterCard.qml \
+		../qml-bootstrap/src/examples/About.qml \
 		../qml-bootstrap/src/examples/AmericanExpress.qml \
 		../qml-bootstrap/src/examples/ButtonPage.qml \
-		../qml-bootstrap/src/examples/ThumbnailListPage.qml \
-		../qml-bootstrap/src/examples/ButtonBarPage.qml \
 		../qml-bootstrap/src/examples/Visa.qml \
 		../qml-bootstrap/src/examples/images/winston.jpg \
 		../qml-bootstrap/src/examples/images/spengler.jpg \

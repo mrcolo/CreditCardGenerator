@@ -53,6 +53,7 @@ public:
 
    Q_INVOKABLE void sortBy(int choice, int type){
        if(type == 0){
+
            cout<<"Sorting VISA"<<endl;
            switch(choice){
                case 0:
@@ -65,7 +66,6 @@ public:
        }
 
        if(type == 1){
-           cout<<"Sorting MC"<<endl;
            switch(choice){
                case 0:
                    std::sort(myParser.myMS.begin(),myParser.myMS.end(), key1());
@@ -77,7 +77,7 @@ public:
        }
 
        if(type == 2){
-           cout<<"Sorting MC"<<endl;
+           cout<<"Sorting American Express"<<endl;
            switch(choice){
                case 0:
                    std::sort(myParser.myAMEX.begin(),myParser.myAMEX.end(), key1());

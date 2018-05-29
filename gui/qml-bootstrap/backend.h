@@ -66,7 +66,7 @@ public:
             if(cardToString[0] == '5')
                 for(int i = 0; i < myParser.myMS.size();i++)
                     if(stoi(cardToString.substr(0,6)) == myParser.myMS[i].getBin())
-                        result = string("Type: American Express\n")+string("Company: ")+ myParser.myMS[i].getCompany() +
+                        result = string("Type: Master Card\n")+string("Company: ")+ myParser.myMS[i].getCompany() +
                                  "\n"+"Card: " + myParser.myMS[i].getCardType() +
                                  "\n"+"Type: " + myParser.myMS[i].getDebitCredit() +
                                  "\n"+"Country: " + myParser.myMS[i].getCountry() +

@@ -25,18 +25,15 @@ OTHER_FILES += \
 		src/styles/DefaulListViewStyle.qml \
 		src/styles/IconListViewStyle.qml \
 		src/examples/ButtonPage.qml \
-		src/examples/DefaultListPage.qml \
     src/lists/AvatarListView.qml \
     src/styles/AvatarListViewStyle.qml \
     src/content/TextContent.qml \
     src/styles/ThumbnailListViewStyle.qml \
     src/lists/ThumbnailListView.qml \
-    src/examples/ThumbnailListPage.qml \
     src/styles/TouchClearStyle.qml \
     src/bars/Bar.qml \
     src/variables/bars.js \
     src/bars/ButtonBar.qml \
-    src/examples/ButtonBarPage.qml \
     src/cards/Card.qml \
     src/styles/CardStyle.qml
 
@@ -57,4 +54,5 @@ HEADERS += \
 DISTFILES += \
     src/examples/Visa.qml \
     src/examples/AmericanExpress.qml \
-    src/examples/MasterCard.qml
+    src/examples/MasterCard.qml \
+    src/examples/About.qml

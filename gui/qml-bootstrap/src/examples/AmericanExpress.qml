@@ -11,7 +11,7 @@ Grid{
     spacing: 20
         Item {
 
-            width: 500; height: 500
+            width: 500; height: 1200
 
 
             CreateCards {
@@ -27,6 +27,7 @@ Grid{
                }
 
                ListView {
+                   id: viewBanks
                    anchors.fill: parent
                    model: createcards.display(2)
                    delegate: fruitDelegate
@@ -47,9 +48,11 @@ Grid{
                              text: 'By Card Type'
                          }
                            ]
-                           onClick: {
-                              createcards.sortBy(checkedIndex,2);
-                           }
+                      onClick: {
+                        createcards.sortBy(checkedIndex,2);
+                        viewBanks.delegate = fruitDelegate;
+                        viewBanks.model = createcards.display(2)
+                     }
 
              }
             ButtonBar{
