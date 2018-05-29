@@ -52,7 +52,30 @@ card& card::operator=(const card& other){
 }
 
 void card::generateNumber(){
-    //TODO use Luhn to generate number based on BIN.
+    srand(time(nullptr));
+    string cardNum(to_string(BIN));
+    int sum = 0, temp = 0;
+
+    while(cardNum.length() < 15){
+        int iNum = (rand() % 10);
+        char cNum = static_cast<char>('0' + iNum);
+        cardNum.push_back(cNum);
+    }
+    for(size_t i = 0; i < cardNum.length(); i++){
+        if(i%2 == 0){
+            temp = (cardNum[i] - '0') * 2;
+            if(temp > 9)
+                temp -= 9;
+            sum += temp;
+        }else{
+            temp = (cardNum[i] - '0');
+            sum += temp;
+        }
+    }
+    int iCheck = (sum*9)%10;
+    char cCheck = static_cast<char>('0' + iCheck);
+    cardNum.push_back(cCheck);
+    CARDNUMBER = cardNum;
 }
 
 bool card::isValid(){
@@ -60,16 +83,15 @@ bool card::isValid(){
         return false;
     }else{
         int sum = 0, temp = 0;
-        string luhn_numbers(CARDNUMBER.substr(0,string::npos));
 
-        for(size_t i = 0; i < luhn_numbers.length(); i++){
-            if(i%2 == 0 && i != luhn_numbers.length()-1){
-                temp = (luhn_numbers[i] - '0') * 2;
+        for(size_t i = 0; i < CARDNUMBER.length(); i++){
+            if(i%2 == 0){
+                temp = (CARDNUMBER[i] - '0') * 2;
                 if(temp > 9)
                     temp -= 9;
                 sum += temp;
             }else{
-                temp = (luhn_numbers[i] - '0');
+                temp = (CARDNUMBER[i] - '0');
                 sum += temp;
             }
         }
