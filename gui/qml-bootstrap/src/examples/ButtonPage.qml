@@ -5,6 +5,7 @@ import "../buttons"
 import "../bars"
 import "../variables/fontawesome.js" as FontAwesome
 import io.qt.examples.backend 1.0
+
 Item {
     width: parent.width
     height: parent.height

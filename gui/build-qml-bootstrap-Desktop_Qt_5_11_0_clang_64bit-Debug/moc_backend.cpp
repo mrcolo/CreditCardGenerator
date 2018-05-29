@@ -58,7 +58,7 @@ static const uint qt_meta_data_BackEnd[] = {
        1,    1,   19,    2, 0x02 /* Public */,
 
  // methods: parameters
-    QMetaType::QString, QMetaType::QString,    3,
+    QMetaType::Void, QMetaType::QString,    3,
 
        0        // eod
 };
@@ -69,8 +69,7 @@ void BackEnd::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         BackEnd *_t = static_cast<BackEnd *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: { QString _r = _t->verify((*reinterpret_cast< QString(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
+        case 0: _t->verify((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     }

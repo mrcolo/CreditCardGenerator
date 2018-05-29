@@ -718,6 +718,8 @@ moc_backend.cpp: ../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QOb
 		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
 		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../src/parse.h \
+		../../src/card.h \
 		../qml-bootstrap/backend.h \
 		moc_predefs.h \
 		../../../../Qt/5.11.0/clang_64/bin/moc
@@ -725,8 +727,35 @@ moc_backend.cpp: ../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QOb
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
-compiler_moc_source_make_all:
+compiler_moc_source_make_all: main.moc
 compiler_moc_source_clean:
+	-$(DEL_FILE) main.moc
+main.moc: ../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
+		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtQml.framework/Headers/QQmlApplicationEngine \
+		../../../../Qt/5.11.0/clang_64/lib/QtQml.framework/Headers/qqmlapplicationengine.h \
+		../../src/parse.h \
+		../../src/card.h \
+		../qml-bootstrap/backend.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QStringList \
+		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtQuick.framework/Headers/QQuickView \
+		../../../../Qt/5.11.0/clang_64/lib/QtQuick.framework/Headers/qquickview.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtQml.framework/Headers/QQmlContext \
+		../../../../Qt/5.11.0/clang_64/lib/QtQml.framework/Headers/qqmlcontext.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/QList \
+		../../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../qml-bootstrap/main.cpp \
+		moc_predefs.h \
+		../../../../Qt/5.11.0/clang_64/bin/moc
+	/Users/francescocolonnese/Qt/5.11.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/francescocolonnese/Qt/5.11.0/clang_64/mkspecs/macx-clang -I'/Users/francescocolonnese/Desktop/WIlkinson TEST2/gui/qml-bootstrap' -I/Users/francescocolonnese/Qt/5.11.0/clang_64/lib/QtQuick.framework/Headers -I/Users/francescocolonnese/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/francescocolonnese/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers -I/Users/francescocolonnese/Qt/5.11.0/clang_64/lib/QtQml.framework/Headers -I/Users/francescocolonnese/Qt/5.11.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/francescocolonnese/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.1.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include -F/Users/francescocolonnese/Qt/5.11.0/clang_64/lib ../qml-bootstrap/main.cpp -o main.moc
+
 compiler_uic_make_all:
 compiler_uic_clean:
 compiler_rez_source_make_all:
@@ -737,7 +766,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_moc_source_clean 
 
 ####### Compile
 
@@ -745,13 +774,23 @@ main.o: ../qml-bootstrap/main.cpp ../../../../Qt/5.11.0/clang_64/lib/QtWidgets.f
 		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
 		../../../../Qt/5.11.0/clang_64/lib/QtQml.framework/Headers/QQmlApplicationEngine \
 		../../../../Qt/5.11.0/clang_64/lib/QtQml.framework/Headers/qqmlapplicationengine.h \
+		../../src/parse.h \
+		../../src/card.h \
 		../qml-bootstrap/backend.h \
 		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QObject \
 		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QString \
 		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
+		../../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QStringList \
+		../../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtQuick.framework/Headers/QQuickView \
+		../../../../Qt/5.11.0/clang_64/lib/QtQuick.framework/Headers/qquickview.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtQml.framework/Headers/QQmlContext \
+		../../../../Qt/5.11.0/clang_64/lib/QtQml.framework/Headers/qqmlcontext.h \
+		../../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/QList \
+		../../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qevent.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../qml-bootstrap/main.cpp
 
 card.o: ../../src/card.cpp ../../src/card.h
