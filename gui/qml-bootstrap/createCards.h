@@ -15,7 +15,7 @@
 #include <QtWidgets>
 
 using namespace std;
-//TODO use this to create a sort function for dropdown
+//first key, sort by company
 struct key1
 {
     inline bool operator() ( card& card1,  card& card2)
@@ -24,7 +24,7 @@ struct key1
         return (card1.getCompany() < card2.getCompany());
     }
 };
-
+//second key, sort by cardtype
 struct key2
 {
     inline bool operator() ( card& card1,  card& card2)
@@ -32,7 +32,6 @@ struct key2
         return (card1.getCardType() < card2.getCardType());
     }
 };
-
 
 class CreateCards : public QObject
 {
